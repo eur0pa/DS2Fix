@@ -42,6 +42,12 @@
     <ClInclude Include="Fixes\Durability.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Signatures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\SigScan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -57,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fixes\Durability.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\SigScan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DS2Fix.h"
+#include "Utils\Log.h"
 
 VOID InitInstance(HMODULE);
 VOID ExitInstance();

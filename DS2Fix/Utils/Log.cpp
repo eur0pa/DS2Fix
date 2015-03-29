@@ -1,8 +1,5 @@
 #include "stdafx.h"
-
 #include "Log.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 using std::string;
 
@@ -17,7 +14,7 @@ void Log(std::string format, ...)
     format += "\r\n";
     vsnprintf_s(buffer, sizeof(buffer), format.c_str(), args);
     va_end(args);
-    if (!IsDebuggerPresent) {
+    if (!IsDebuggerPresent()) {
         WriteFile(hFile, buffer, strlen(buffer), NULL, NULL);
     }
     else {

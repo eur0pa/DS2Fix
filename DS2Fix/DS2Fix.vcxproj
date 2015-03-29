@@ -81,6 +81,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Signatures.h" />
     <ClInclude Include="DS2Fix.h" />
     <ClInclude Include="Core\Offsets.h" />
     <ClInclude Include="Fixes\Durability.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utils\Log.h" />
     <ClInclude Include="Utils\Pointers.h" />
+    <ClInclude Include="Utils\SigScan.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -106,6 +108,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Utils\Log.cpp" />
+    <ClCompile Include="Utils\SigScan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Libs\detours\detours.lib" />

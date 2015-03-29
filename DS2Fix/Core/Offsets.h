@@ -1,5 +1,4 @@
 #pragma once
-
 #include "stdafx.h"
 
 #define DarkSoulsII   0x3F0000

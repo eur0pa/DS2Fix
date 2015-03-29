@@ -3,16 +3,22 @@
 
 #include "stdafx.h"
 #include "DS2Fix.h"
+
 #include "Core\Offsets.h"
 #include "Fixes\Durability.h"
-
-#include "detours.h"
-#pragma comment(lib, "detours.lib")
-
+#include "Utils\Log.h"
+#include "Utils\SigScan.h"
+#include "Core\Signatures.h"
 
 VOID Attach(HMODULE hModule)
 {
-    oSetDurability = (pSetDurability)injSetDurability;
+    if (!GetImageInfo())
+    {
+        return;
+    }
+
+    //oSetDurability = (pSetDurability)injSetDurability;
+    oSetDurability = (pSetDurability)(FindSignature(&fsSetDurability));
 
 #ifndef NDEBUG
     Log("hBase @ 0x%p", DarkSoulsII);
