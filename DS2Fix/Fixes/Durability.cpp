@@ -71,7 +71,7 @@ __declspec(naked) void __stdcall tSetDurability()
     */
     __asm
     {
-        test eax, -1    // the routine gets called to move floats around
+        cmp eax, -1     // the routine gets called to move floats around
         je nevermind    // for many reasons - eax usually is -1, 0, 1 or 2
         cmp eax, 2      // in those cases, while it becomes a valid address
         jbe nevermind   // when actual durability is being modified
