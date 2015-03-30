@@ -1,54 +1,47 @@
 #include "stdafx.h"
 #include "Durability.h"
-
 #include "Core\Offsets.h"
 
-DWORD ptr;
-DWORD dwRetDurability = retSetDurability;
-
-float fEngineFPS = 30.0f;
-float fCurrentFPS;
-
-float fOrgDurability;
+float fCurrentDurability;
 float fNewDurability;
 float fOldDurability;
-float fOrgDamage;
-float fFixedDamage;
 
 float fGetCurrentFPS()
 {
+    DWORD ptr;
     ptr = *(DWORD*)(DarkSoulsII + RenderManager);
     return *(float*)(ptr + CurrentFPS);
 }
 
-float fFixDurability(float fOrgDurability)
+float fFixDurability(float fCurrentDurability)
 {
-    fCurrentFPS = fGetCurrentFPS();
+    float fCurrentFPS = fGetCurrentFPS();
     fOldDurability = fNewDurability;
-    fNewDurability = fOrgDurability;
+    fNewDurability = fCurrentDurability;
 
     if (fOldDurability <= 0 || fNewDurability <= 0 || fCurrentFPS <= 0)
     {
-        return fOrgDurability;
+        return fCurrentDurability;
     }
 
-    fOrgDamage = fOldDurability - fNewDurability;
+    float fGameDamage = fOldDurability - fNewDurability;
 
-    if (fOrgDamage <= 0)
+    if (fGameDamage <= 0)
     {
-        return fOrgDurability;
+        return fCurrentDurability;
     }
 
-    fFixedDamage = fOrgDamage / (fCurrentFPS / fEngineFPS);
+    float fFixedDamage = fGameDamage / (fCurrentFPS / 30.0f);
 
     if (fFixedDamage <= 0)
     {
-        return fOrgDurability;
+        return fCurrentDurability;
     }
 
     return fOldDurability - fFixedDamage;
 }
 
+DWORD dwRetDurability = retSetDurability;
 __declspec(naked) void __stdcall tSetDurability()
 {
     /*CPU Disasm
@@ -72,25 +65,26 @@ __declspec(naked) void __stdcall tSetDurability()
     */
     _asm
     {
-        cmp eax, -1         // the routine gets called to move floats around
-        je nevermind        // for many reasons - eax usually is -1, 0, 1 or 2
-        cmp eax, 2          // in those cases, while it becomes a valid address
-        jbe nevermind       // when actual durability is being modified
+        cmp     eax, -1         // the routine gets called to move floats around
+        je      nevermind       // for many reasons - eax usually is -1, 0, 1 or 2
+        cmp     eax, 2          // in those cases, while it becomes a valid address
+        jbe     nevermind       // when actual durability is being modified
 
-        movss[fOrgDurability], xmm0
+        movss   [fCurrentDurability], xmm0
     }
 
-    fNewDurability = fFixDurability(fOrgDurability);
+    fNewDurability = fFixDurability(fCurrentDurability);
 
     _asm
     {
-        movss xmm0, [fNewDurability]
+        movss   xmm0, [fNewDurability]
 
-     nevermind:             // we got called for the wrong reason, proceed as nothing happened
-        push ecx
-        push ebx
-        mov ecx, esi
-        movss dword ptr[edi + 0x6C], xmm0
-        jmp[dwRetDurability]
+     nevermind:                 // we got called for the wrong reasons, proceed as nothing happened
+        push    ecx
+        push    ebx
+        mov     ecx, esi
+        movss   dword ptr[edi + 0x6C], xmm0
+
+        jmp     [dwRetDurability]
     }
 }

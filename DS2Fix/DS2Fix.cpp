@@ -17,7 +17,6 @@ VOID Attach(HMODULE hModule)
         return;
     }
 
-    //oSetDurability = (pSetDurability)injSetDurability;
     oSetDurability = (pSetDurability)(FindSignature(&fsSetDurability));
 
 #ifndef NDEBUG
