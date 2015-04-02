@@ -68,5 +68,10 @@ namespace Injector
             tBackgroundThread.Abort();
             Application.Current.Shutdown();
         }
+
+        private void Help_button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/eur0pa/DS2Fix");
+        }
     }
 }

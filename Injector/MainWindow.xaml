@@ -4,6 +4,12 @@
         Title="Dark Souls II Fix" Height="149" Width="235" Icon="Resources/ds2.ico">
     <Grid>
         <Button x:Name="Apply_button" Content="Apply" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="142,72,0,0" Click="Apply_button_Click" />
+        <Button x:Name="Support_button" Content="Github" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="62,72,0,0" Click="Help_button_Click" />
         <TextBlock x:Name="StatusText" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" />
+        <Grid Margin="10,10,90,53">
+            <CheckBox Content="60fps durability fix" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" IsEnabled="False"/>
+            <CheckBox Content="Namecrash protection" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0" IsEnabled="False"/>            
+            <CheckBox Content="+14 save corruption" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,40,0,0" IsEnabled="False"/>
+        </Grid>
     </Grid>
 </Window>
