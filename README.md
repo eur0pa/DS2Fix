@@ -4,7 +4,7 @@ Random fixes for Dark Souls II (WIP)
 
 ## How to use
 
-1. go do the [release page](https://github.com/eur0pa/DS2Fix/releases) and download the latest version
+1. go to the [release page](https://github.com/eur0pa/DS2Fix/releases) and download the latest version
 2. unpack anywhere
 3. run ds2fix.exe
 4. either click 'Apply' before launching Dark Souls II or after, it doesn't matter
