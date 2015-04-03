@@ -1,6 +1,6 @@
-# DS2Fix
+# DS2(notSotFS)Fix
 
-Random fixes for Dark Souls II (WIP)
+Random fixes for Dark Souls II (not Scholar of the First Sin - WIP)
 
 ## How to use
 
